@@ -1,10 +1,12 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:insta/screens/response/mobile_screen_layout.dart';
 import 'package:insta/screens/response/responsive_layout.dart';
 import 'package:insta/screens/response/web_screen_layout.dart';
 import 'package:insta/utils/colors.dart';
 
-void main() {
+void main() async {
+  await Firebase.initializeApp();
   runApp(const MyApp());
 }
 
@@ -16,11 +18,11 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Insta',
-      theme: ThemeData.dark().copyWith(
-        scaffoldBackgroundColor: mobileBackgroundColor
-      ),
+      theme: ThemeData.dark()
+          .copyWith(scaffoldBackgroundColor: mobileBackgroundColor),
       home: const ResponsiveLayout(
-        webScreenLayout: WebScreenLayout(), mobileScreenLayout: MobileScreenLayout(),
+        webScreenLayout: WebScreenLayout(),
+        mobileScreenLayout: MobileScreenLayout(),
       ),
     );
   }
